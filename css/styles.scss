@@ -10,7 +10,7 @@ $p-color: #444444;
 
 html {
   font-family: $main-font;
-  //overflow: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -340,125 +340,66 @@ $sway-type: "sway-left-to-right", "sway-right-to-left";
   }
 }
 
-@keyframes sway-left-to-right {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(100%);
-  }
-}
-
-@keyframes sway-right-to-left {
-  from {
-    transform: translateX(-100%);
-  }
-
-  to {
-    transform: translateX(100%);
-  }
-}
-
-/*responsive
-
-@media screen and (max-width: 800px)
-{
-  .section_clicker{
-    display: flex;
-    flex-direction: column;
-  }
-  .bubbles{
-    display: none;
-  }
-} */
-
 #bonus {
+  display: none;
   position: absolute;
-  left: 0;
-  transition: left 8s, transform 8s;
   z-index: 1;
+  img {
+    width: 20px;
+    animation: zoom-in-zoom-out 1s ease infinite;
+  }
 }
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
 #message_bonus {
   animation: Color 4s linear infinite;
-  -webkit-animation: Color 4s ease-in-out infinite;
+  -webkit-animation: Color 1s ease-in-out infinite;
   font-size: 20px;
 }
 
 @keyframes Color {
   0% {
-    color: #a0d468;
+    color: #dc3838;
+    transform: scale(1, 1);
   }
 
-  20% {
-    color: #4fc1e9;
+  25% {
+    color: #dccc38;
+    
   }
 
-  40% {
-    color: #ffce54;
+  50% {
+    color: #38dc5c;
+    transform: scale(1.5, 1.5);
+    
   }
 
-  60% {
-    color: #fc6e51;
-  }
-
-  80% {
-    color: #ed5565;
+  75% {
+    color: #3895dc;
   }
 
   100% {
-    color: #ac92ec;
+    color: #dc38d1;
+    transform: scale(1, 1);
   }
 }
 
-@-moz-keyframes Color {
-  0% {
-    color: #a0d468;
-  }
-
-  20% {
-    color: #4fc1e9;
-  }
-
-  40% {
-    color: #ffce54;
-  }
-
-  60% {
-    color: #fc6e51;
-  }
-
-  80% {
-    color: #ed5565;
-  }
-
-  100% {
-    color: #ac92ec;
-  }
+#bubbles{
+  opacity:1;
+  
 }
 
-@-webkit-keyframes Color {
-  0% {
-    color: #a0d468;
-  }
-
-  20% {
-    color: #4fc1e9;
-  }
-
-  40% {
-    color: #ffce54;
-  }
-
-  60% {
-    color: #fc6e51;
-  }
-
-  80% {
-    color: #ed5565;
-  }
-
-  100% {
-    color: #ac92ec;
-  }
+#message_bonus{
+  opacity: 1;
+  transition: opacity 1s linear;
 }

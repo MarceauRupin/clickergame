@@ -53,7 +53,7 @@ let auto = function () {
       view.innerHTML = score;
     };
     score = score - price_auto;
-    price_auto = price_auto * 3;
+    price_auto = price_auto * 2;
     setInterval(add_score_auto, 200);
     click.addEventListener("click", add_score_auto);
     price_autoclick.value = price_auto;
@@ -120,11 +120,38 @@ function tafonction() {
 }
 tafonction();
 
+setInterval(function affiche() {
+  bonus.style.display = "block";
+  // recuperation de la resolution de l'ecran chez l'utilisateur
+  largeur = screen.width;
+  hauteur = screen.height;
+  // positionnement aleatoire
+  posx = Math.round(Math.random() * largeur);
+  posy = Math.round(Math.random() * hauteur);
 
+  // recuperation de l'element div servant a afficher l'image
+  elementDivImage = document.getElementById("bonus");
+  // ajustement de l'attribute style, notament left et top
+  elementDivImage.setAttribute(
+    "style",
+    "position:absolute; left:" +
+      posx +
+      "px; top:" +
+      posy +
+      "px; width:160; height:120; z-index:1"
+  );
+
+  let clear = function () {
+    bonus.style.display = "none";
+  };
+
+  setTimeout(clear, 3000);
+  affiche();
+}, 60000);
 
 let click_credit = function () {
   bubble.style.display = "block";
-  message_bonus.innerHTML = "FRÉNÉSIE !!!!";
+  message_bonus.innerHTML = "FRÉNÉSIE !!!";
   bonus.style.opacity = "0";
   bonus.style.left = "0";
   bonus.style.transform = "translateX(120%)";
@@ -134,31 +161,14 @@ let click_credit = function () {
     view.innerHTML = score;
   };
   let time = setInterval(add_score_auto, 0);
+  click_increment = click_increment * 8;
 
-  setInterval(function () {
-    clearInterval(time);
+  setTimeout(function () {
+    clearInterval(time)
     document.getElementById("message_bonus").innerHTML = "";
-    bubble.style.display = "none";
+    bubble.style.opacity = "0";
+    click_increment = click_increment / 8;
   }, 10000);
-  
-  setInterval(function () {
-    bonus.style.opacity = "1";
-    bonus.style.left = "120%";
-    bonus.style.transform = "translateX(0%)";
-  
-  }, 20000);
-  
-  setInterval(function masquer_frenesie() {
-    document.getElementById("message_bonus").innerHTML = "";
-    bubble.style.display = "none";
-    bonus.style.opacity = "0";
-    bonus.style.left = "0";
-    bonus.style.transform = "translateX(120%)";
-  }, 28000);
-
-  
 };
 
 bonus.addEventListener("click", click_credit);
-
-
